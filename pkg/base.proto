@@ -1,0 +1,32 @@
+syntax = "proto3";
+
+package base;
+
+option go_package = "base/pkg"; // silencia una advertencia del compilador
+
+// -----------------servicio-----------------
+message ResultadoGuardar {
+    int32 Valor = 1;
+    string Error = 2;
+}
+
+message ResultadoObtenerEliminar {
+    string Clave = 1;
+    string Valor = 2;
+    string Error = 3;
+}
+
+message ParametroGuardar {
+    string Clave = 1;
+    string Valor = 2;
+}
+
+message ParametroObtenerEliminar {
+    string Clave = 1;
+}
+
+service Base {
+    rpc guardar(ParametroGuardar) returns (ResultadoGuardar);
+    rpc obtener(ParametroObtenerEliminar) returns (ResultadoObtenerEliminar);
+    rpc eliminar(ParametroObtenerEliminar) returns (ResultadoObtenerEliminar);
+}
